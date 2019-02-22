@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(123, 117, 117);
+}
+
+ul, li {
+  list-style: none;
+}
+
+input[type=text] {
+  background-color: transparent;
+}
+
+input::placeholder {
+  color: white;
+  font-style: italic;
+}
+
+button {
+  margin-right: 10px;
+  outline: none;
+}
+
+#main {
+  position: absolute;
+  top: 150px;
+  left: 38%;
+}
+
+#mainClock {
+  font-size: 90px;
+  color: white;
+}
+
+.askName {
+  position: absolute;
+  width: 310px;
+  top: 310px;
+  left: 38%;
+}
+
+.nameInput {
+  width: 100%;
+  height: 20px;
+  margin-left: 20px;
+  color: white;
+  font-size: 22px;
+  text-align: center;
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
+}
+
+.greeting {
+  position: absolute;
+  top: 310px;
+  left: 41%;
+  font-size: 42px;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+}
+
+.askTodo {
+  position: absolute;
+  top: 385px;
+  left: 22%;
+  width: 200px;
+  font-size: 42px;
+  color: white;
+}
+
+.todoInput {
+  width: 100%;
+  font-size: 20px;
+  color: white;
+}
+
+.todoList {
+  position: absolute;
+  top: 380px;
+  left: 38%;
+}
+
+.todo {
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 25px;
+  color: white;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.weather {
+  display: block;
+  margin: 15px 15px;
+  float: right;
+  color: white;
+  font-size: 20px;
+}
+
+.bgImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: -1;
+  animation: fadeIn 0.5s linear;
+}
