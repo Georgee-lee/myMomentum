@@ -4,20 +4,35 @@ const ul = document.querySelector('.todoList');
 
 const TODO_LS = 'userTodos';
 
-const Todos = [];
+let Todos = [];
 
 function removeTodo(event) {
-  event.preventDefault();
-
   const li = event.target.parentNode.parentNode;
   ul.removeChild(li);
+
+  const cleanTodos = Todos.filter((obj) => {
+    // 아래 콘솔에서 찍어 본 것처럼 li.id 는 "" 문자열 숫자 이기때문에 원하던 숫자 비교가 불가능하다!!
+    // console.log(obj.id, li.id);
+    // 그래서 Number메소드를 사용하여 스트링을 숫자로 바꾼다
+    return obj.id !== Number(li.id);
+  });
+  Todos = cleanTodos;
+
+  saveTodos();
 }
 
 function finishTodo(event) {
-  event.preventDefault();
-
   const li = event.target;
   li.classList.toggle('done');
+}
+
+function saveTodos() {
+  //  배열을 로컬스토리지에 저장하자
+  //  localStorage.setItem(TODO_LS, Todos);  이렇게 저장하니까 브라우저는 [object Object]이렇게 저장한다. 
+  //  이럴 땐 JSON.stringify를 사용! 스트링으로 바꾸어서 인식하도록 만든다!
+  const parsedArr = JSON.stringify(Todos);
+
+  localStorage.setItem(TODO_LS, parsedArr);
 }
 
 function createTodo(userTodo) {
@@ -47,13 +62,7 @@ function createTodo(userTodo) {
   };
   Todos.push(newTodo);
 
-  //  배열을 로컬스토리지에 저장하자
-  //  localStorage.setItem(TODO_LS, Todos);  이렇게 저장하니까 브라우저는 [object Object]이렇게 저장한다. 
-  //  이럴 땐 JSON.stringify를 사용! 스트링으로 바꾸어서 인식하도록 만든다!
-  const parsedArr = JSON.stringify(Todos);
-
-  //  이제 진짜로 로컬에 저장
-  localStorage.setItem(TODO_LS, parsedArr);
+  saveTodos();
 }
 
 function inputTodo(event) {
